@@ -18,7 +18,7 @@ public class Server {
     
     public Socket attendi(){
         try{
-            System.out.println("1 SERVER partito in esecuzione");
+            System.out.println("(1) SERVER partito in esecuzione");
             server = new ServerSocket(7777);
             client = server.accept();
             server.close();
@@ -34,14 +34,14 @@ public class Server {
     }
     
     public void comunica(){
-        try{
-            System.out.println("(3) Inserisci il primo operando");
+        try{            
             op1 = inDalClient.readLine();
-            System.out.println("(4) Inserisci il secondo operando");
+            System.out.println("(3) Primo operando ricevuto");
             op2 = inDalClient.readLine();
-            System.out.println("(5) Inserisci l'operatore");
+            System.out.println("(6) Secondo operando ricevuto");
             op = (char) inDalClient.read();
-            
+            System.out.println("(9) Operatore ricevuto");
+                        
             op1d = Double.parseDouble(op1);
             op2d = Double.parseDouble(op2);
             
@@ -66,9 +66,10 @@ public class Server {
                     risposta = "Operatore non valido";                
             }
             
-            //OUTPUT AL CLIENT      
-            outVersoClient.writeBytes("(7)" + risposta + '\n');
-            System.out.println("(9) Fine elaborazione");
+            //OUTPUT AL CLIENT 
+            System.out.println("(12) Invio risposta al client");
+            outVersoClient.writeBytes(risposta + '\n');
+            System.out.println("(14) Fine elaborazione");
             client.close();
         }
         catch(Exception e){
